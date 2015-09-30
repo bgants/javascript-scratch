@@ -1,0 +1,40 @@
+
+This is an example of intercepting the Ext.form.Field class to add a quick tip bsed on the value of some helpText field defined on an xtype textfield.
+so for example using the xytope: 'formfield' we can now add a custom field helpText ith the context sensitive help we want and the intercept function will
+grab that field and display it.
+
+
+
+xtype: 'textfield',
+fieldLabel: '<span style="color:red; font-weight: bold;">* </span> Policy Name',
+helpText: '<strong>Policy name also referred to as Policy Identifier</strong>.  Since policies can be referenced by their identifiers, it is the responsibility of the PAP or Policy ' 
+			+ 'administration point - the system entity that creates a policy or policy set to ensure that these are unique.' 
+			+ '<p>Confusion between identifiers could lead to ' 
+			+ 'misidentification of the applicable policy. If the identifier is reused there is a danger that other policies or policy sets that reference it may be adversely ' 
+			+ 'affected. Conversely, if a new identifier is used, these other policies may continue to use the prior policy unless it is deleted. In either case the results ' 
+			+ 'may not be what the policy administrator intends.', 
+
+
+//Gants - Initiailze the QuickTips
+Ext.QuickTips.init();
+
+//Gants - Configure for 'context sensitive help' show/delay abd ir any other options you may want.
+Ext.apply(Ext.QuickTips.getQuickTip(), {
+    dismissDelay: 20000,
+    showDelay: 100,
+    maxWidth: 400,
+    minWidth: 350       
+});
+
+/*
+ * Gants - Adding Sequence/Intercept on the form fields to build out a simple 'context sensitive help'
+ * intercepting the form field and taking action if there is help text (helpText is a custom field).  
+ * 
+ */
+Ext.Function.interceptAfter(Ext.form.Field.prototype, 'initComponent', function() {
+	var fl = this.fieldLabel, h = this.helpText, ab = this.allowBlank;
+	console.log(this);
+	if (h !== '' && fl) {		
+		this.fieldLabel = '<span data-hide="true" data-qtip="'+h+'">'+fl+'</span>' 
+	} 
+});
