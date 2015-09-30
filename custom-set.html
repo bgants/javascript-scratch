@@ -1,0 +1,81 @@
+
+<html>
+<head>
+<title>Javascript - How to include a script area in HTML</title>
+<script language=javascript type="text/javascript">
+	/* 	An example implementation of a custom Set. 
+		Sets contain unique elements, no repeats. 
+		You can add elements to a set.
+		you can see how big the set is. 
+		You can see if somthing is in the set. 
+		You can take the intersection of the set. 
+		TODO - remove elements from a set.
+		TODO - take the union of a set.
+	*/
+	
+	function CustomSet() {		
+		this.queue = [];
+	}
+
+	CustomSet.prototype = {
+		constructor:CustomSet,
+		size:function() {
+			return this.queue.length;
+		},
+		contains:function(val) {
+			for(var i = 0; i < this.queue.length; i++) {
+				if (this.queue[i] == val) {					
+					return true;
+				}				
+			} 
+			return false;
+		},
+		add:function(val) {				
+			if(this.contains(val)) {
+				//dont do anything be silent sets have unique values in them..
+			} else {			
+				this.queue.push(val);
+			}
+		},
+		intersection:function(set) {
+			if(set.queue && set.queue.length > 0) {
+				tmpSet = new CustomSet();
+				for (var i = 0; i < set.queue.length; i++) {					
+					if(this.contains(set.queue[i])) {
+						tmpSet.add(set.queue[i]);
+					}
+				}	
+				return tmpSet;
+			} else {  
+				throw new Error('Check the set you trying to intersect with !!'); 
+			}
+		}
+	}
+
+	var aSet = new CustomSet();	
+	aSet.add(9);
+	aSet.add(9); //add it again shouldnt matter sets can only have uniques...
+	aSet.add(8);
+	aSet.add(6);
+
+	var bSet = new CustomSet();
+	bSet.add(5); 
+	bSet.add(5);  //add it again shouldnt matter sets can only have uniques...
+	bSet.add(5);  //add it again shouldnt matter sets can only have uniques...
+	bSet.add(1); //add it again shouldnt matter sets can only have uniques...
+	bSet.add(6);
+	bSet.add(9);
+	
+	var newSet = aSet.intersection(bSet); //this has all the items in common or the intersection.
+
+	//The elements in common ..
+	console.log(newSet.queue);
+
+</script>
+</head>
+<body>
+
+
+
+</body>
+</html>
