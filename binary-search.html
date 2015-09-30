@@ -1,0 +1,48 @@
+
+<html>
+<head>
+<title>Javascript - How to include a script area in HTML</title>
+<script language=javascript type="text/javascript">
+	/* 
+		search expects a sorted list. and will return the position in the list of what your
+		looking for (i.e. index) if its found in the list, if its not than this return value
+		will be -1 for not found.
+	*/
+
+	function search(list, target, start, end) {
+		if (start > end) {
+			return -1;
+		}
+
+		var middle = Math.floor((start + end) / 2);
+				
+		var x = list[middle];
+
+		if(x > target) { 
+			return search(list, target, start, middle - 1); 
+		}
+
+		if (x < target) {
+			return search(list, target, middle + 1, end);
+		}
+
+		//usually we would return x but we aren’t looking for x but middle has its position
+		return middle; 
+	}
+
+	list=[23,56,78,99,345,567,890,1234,4321,5678,9998]
+
+	var found = search(list, 890, 0, list.length - 1);
+	if (found != -1) {
+		console.log("Found at positon " + found);
+	} else {
+		console.log("Not found in the list");
+	}
+</script>
+</head>
+<body>
+
+
+
+</body>
+</html>
