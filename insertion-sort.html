@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Insertion Sort Example</title>		
+	</head>
+	<body>
+		<script>
+			var numbers = [ 6, 5, 4, 7, 1, 9, 10, 12, 11];	
+			console.log("Un-sorted array --> " + numbers);	
+			for (var i = 1; i < numbers.length; i++) {
+				var key = numbers[i];			
+				var j = i - 1;			
+				while(j >= 0 && numbers[j] > key) { 
+					numbers[j+1] = numbers[j];					
+					j = j - 1; 				
+				}	
+				numbers[j + 1] = key;						
+			}
+			console.log("Sorted array --> " + numbers);
+		</script>
+	</body>
+</html>
