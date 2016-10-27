@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Linked List Example</title>		
+	</head>
+	<body>
+		<script>
+			//Class LinkedList
+			function LinkedList() {
+				//The node
+				let Node = function(element) {
+					this.element = element;
+					this.next = null;
+				};
+
+				let length = 0;  				//length of the list
+				let head = null;				//front of the list
+
+				//Adds an elenet to the list - find the last element n the list and then add it there.
+				this.append = function(element) {
+					let node = new Node(element);
+					let current;
+
+					//This is an empty list if the head is null
+					if(head == null) {
+						head = node;
+					} else {
+						//otherwise lets get the first node, of the front of the list (head) and make it current
+						current = head;
+
+						while(current.next) {
+							//go all the way until the end...
+							current = current.next;
+						}
+
+						//Now this is the place we add the new node.
+						current.next = node;			
+					}
+
+					//Increment the counter to reflect the size of the linkedlist.
+					length++;
+				}
+
+				this.removeAt = function(position) {				
+					if(position > -1 && position < length) {
+						let current = head;
+						let previos;
+						let index = 0;
+						//then we are ok go ahead and work...
+						if (position === 0 ) { 
+							//thats the head
+							head = current.next;							
+						} else {
+							while (index++ < position) {
+								previous = current;
+								current = current.next;
+							}
+							//get it out...
+							previous.next = current.next							
+						}
+						length--;
+						return current.element;
+					} else {
+						return null;
+					}
+
+				};
+
+				this.size = function() {
+					return length;
+				};
+
+				//Print the list
+				this.print = function() {
+					let current;
+
+					if(head == null) {
+						console.log("This is an empty list nothing to print");
+					} else {
+						current = head
+						console.log("Head --> " + current.element);
+						while(current.next) {							
+							current = current.next;
+							console.log("Node --> " + current.element);
+						}
+					}
+				}
+			}
+
+			let linkedList = new LinkedList();
+			linkedList.append("abc");
+			linkedList.append("def");
+			linkedList.append("ghi");
+			linkedList.append("jkl");
+			linkedList.append("mno");
+			linkedList.append("pqr");
+			linkedList.append("stu");
+			linkedList.append("vwx");
+			linkedList.append("yz");
+			console.log("The linked list size is : " + linkedList.size());
+			linkedList.print();
+			console.log("Removed " + linkedList.removeAt(0));
+			console.log("The linked list size is : " + linkedList.size());
+			console.log("Removed " + linkedList.removeAt(6));
+			console.log("The linked list size is : " + linkedList.size());
+			linkedList.print();
+		</script>
+	</body>
+</html>
