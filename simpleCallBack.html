@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Simple Call Back Example</title>		
+	</head>
+	<body>
+		<script>
+			//An inline callback function defined.
+			var cities = ['Tokyo', 'London', 'Boston', 'Berlin', 'Chicago', 'New York'];
+			cities.forEach(function callback(city) {
+			    console.log("Declaration inline -> " + city);
+			});			
+
+			//A callback function defined in advance.
+			function myCallBack(city) {
+				console.log("Declaration in advance -> " + city);
+			}
+
+			cities.forEach(myCallBack)
+		</script>
+	</body>
+</html>
