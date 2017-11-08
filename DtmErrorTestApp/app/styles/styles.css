@@ -1,0 +1,18 @@
+.col1{
+    background: #A5C25C;
+}
+
+.col2{
+    background: #6BC0FF;
+}
+
+.table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th {
+  background-color: #550055;
+  color:#eeeeee;
+}
+
+.span3 {  
+    height: 700px !important;
+    overflow: scroll;
+}​
+

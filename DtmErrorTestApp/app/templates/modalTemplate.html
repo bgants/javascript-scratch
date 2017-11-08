@@ -1,0 +1,44 @@
+<div ng-controller="ServiceCtrl">
+    <div class="modal-header">
+        <h5 class="modal-title">Error Results for :{{ error.aircraftId }}</h5>
+    </div>
+    <div class="modal-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-condensed" >     
+                <thead>
+                    <tr>
+                    	<th>Aircraft Id's</th>  
+                    	<th>Processing Error Message</th> 
+                        <th>Type of Error</th>  
+                    </tr>
+                </thead>                                  
+                <tbody>
+                    <tr>
+                    	<td> {{ error.aircraftId }} </td>
+                    	<td> {{ error.upLoadValidateStatus.errorMessage }} </td>
+                        <td> {{ error.upLoadValidateStatus.possibleActions }} </td>                        
+                        
+                    </tr>                        
+                </tbody>
+            </table>            
+        </div>
+
+        <div> 
+            <form name="myForm">
+      			<label>
+        			<input type="radio" ng-model="action.name" value="continueEngineOverride">
+        				Continue Engine Override
+      			</label><br/>
+    		  	<label>
+    		    	<input type="radio" ng-model="action.name" value="delete">
+    		    		Delete Error
+    		  	</label><br/>
+    		 </form> 
+           
+            <div class="modal-footer">
+                <button class="btn btn-primary" ng-click="ok()">Re-Submit</button>
+                <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+            </div>
+        </div>
+    </div>  
+</div>
